@@ -5,7 +5,7 @@ interface AuthContextData {
   signed: boolean;
   user: object | null;
   signIn(): Promise<void>;
-  signOut(): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);

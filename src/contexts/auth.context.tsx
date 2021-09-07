@@ -3,7 +3,10 @@ import * as auth from '../services/auth.service';
 
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: {
+    name: string;
+    email: string;
+  } | null;
   signIn(): Promise<void>;
   signOut(): void;
 }

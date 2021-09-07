@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Text>Bem vindo {user.name}! </Text>
+      <Text>Bem vindo {user && user.name}! </Text>
       <Button title="sign out" onPress={hangleSignOut} />
     </View>
   );

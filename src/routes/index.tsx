@@ -1,15 +1,15 @@
 // Controla qual stack de rotas esta disponviel
 
-import React, {useContext} from 'react';
+import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
 
 import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
 
-import AuthContext from '../contexts/auth.context';
+import {useAuth} from '../contexts/auth.context';
 
 const Routes: React.FC = () => {
-  const {signed, loading} = useContext(AuthContext);
+  const {signed, loading} = useAuth();
 
   if (loading) {
     return (

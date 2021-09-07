@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect} from 'react';
+import React, {createContext, useState, useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as auth from '../services/auth.service';
 import api from '../services/api';
@@ -37,6 +37,7 @@ export const AuthProvider: React.FC = ({children}) => {
   }, []);
 
   async function signIn() {
+    setLoading(true);
     const response = await auth.signIn();
 
     setUser(response.user);
@@ -45,6 +46,7 @@ export const AuthProvider: React.FC = ({children}) => {
 
     await AsyncStorage.setItem('@RNAuth:user', JSON.stringify(response.user));
     await AsyncStorage.setItem('@RNAuth:token', response.token);
+    setLoading(false);
   }
 
   function signOut() {
@@ -61,4 +63,7 @@ export const AuthProvider: React.FC = ({children}) => {
   );
 };
 
-export default AuthContext;
+export function useAuth() {
+  const context = useContext(AuthContext);
+  return context;
+};

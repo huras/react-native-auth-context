@@ -1,16 +1,18 @@
 import {NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, { useState } from 'react';
 
 import Routes from './routes';
 
+import {AuthProvider} from './contexts/auth.context';
+
 const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Routes></Routes>
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <Routes></Routes>
+      </NavigationContainer>
+    </AuthProvider>
   );
 };
 

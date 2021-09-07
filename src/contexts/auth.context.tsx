@@ -3,10 +3,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 import * as auth from '../services/auth.service';
 import api from '../services/api';
 
+interface UserData {
+  name: string;
+  email: string;
+}
+
 interface AuthContextData {
   signed: boolean;
   loading: boolean;
-  user: object | null;
+  user: UserData | null;
   signIn(): Promise<void>;
   signOut(): void;
 }
@@ -14,7 +19,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({children}) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
